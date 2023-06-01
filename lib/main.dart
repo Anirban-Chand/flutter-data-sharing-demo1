@@ -1,4 +1,5 @@
 import 'package:data_sharing_demo1/second_screen.dart';
+import 'package:data_sharing_demo1/third_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,8 +30,11 @@ class SourceScreen extends StatefulWidget {
 }
 
 class _SourceScreenState extends State<SourceScreen> {
-  final TextEditingController _controller =
-      TextEditingController(text: 'Default Message...');
+  final TextEditingController _controller1 =
+      TextEditingController(text: 'Default Message for Second Screen');
+
+  final TextEditingController _controller2 =
+      TextEditingController(text: 'Default Message for Third Screen');
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +44,31 @@ class _SourceScreenState extends State<SourceScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           TextField(
-            controller: _controller,
+            controller: _controller1,
           ),
           ElevatedButton(
-            child: const Text('Go To Destination Screen'),
+            child: const Text('Go To Second Screen'),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SecondScreen(msg: _controller.text),
+                  builder: (context) =>
+                      SecondScreen(msg: _controller1.text),
+                ),
+              );
+            },
+          ),
+          TextField(
+            controller: _controller2,
+          ),
+          ElevatedButton(
+            child: const Text('Go To Third Screen'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ThirdScreen(data: _controller2.text),
                 ),
               );
             },
